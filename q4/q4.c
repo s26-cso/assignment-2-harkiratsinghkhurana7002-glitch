@@ -11,15 +11,15 @@ int main(){
 
         char libname[15];
         int idx=0;
-        strcpy(libname,"lib");
+        strcpy(libname,"./lib");
         for(int i=0;i<strlen(op);i++){
-            libname[i+3]=op[i];
+            libname[i+5]=op[i];
         }
-        libname[strlen(op)+3]='\0';
+        libname[strlen(op)+5]='\0';
         strcat(libname,".so");
         void* lib=dlopen(libname,RTLD_LAZY);
         if(!lib){
-            printf("Error.Attached library is not opening");
+            printf("Error.Attached library is not opening\n");
             continue;
         }
 
@@ -40,3 +40,4 @@ int main(){
 
     return 0;
 }
+
