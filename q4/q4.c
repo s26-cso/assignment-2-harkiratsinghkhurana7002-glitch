@@ -17,7 +17,7 @@ int main(){
         }
         libname[strlen(op)+5]='\0';
         strcat(libname,".so");
-        void* lib=dlopen(libname,RTLD_LAZY);
+        void* lib=dlopen(libname,RTLD_LAZY); 
         if(!lib){
             printf("Error.Attached library is not opening\n");
             continue;
@@ -25,7 +25,7 @@ int main(){
 
         int (*f)(int,int);
 
-        f= (int (*)(int,int)) dlsym(lib,op);
+        f=(int (*)(int,int)) dlsym(lib,op);
         if(!f){
             printf("Error.Operator named the 'op' is not present in the attached library \n");
             dlclose(lib);
