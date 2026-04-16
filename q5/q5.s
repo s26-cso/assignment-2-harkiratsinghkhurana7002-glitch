@@ -1,12 +1,13 @@
 .globl main
 main:
-addi sp,sp,-48
+addi sp,sp,-56
 sd ra,0(sp)
 sd s0,8(sp)
 sd s1,16(sp)
 sd s2,24(sp)
 sd s3,32(sp)
 sd s4,40(sp)  #saving the value of the return address and saved register in the stack so that data doesnt lost
+sd s5,48(sp)
 
 la a0,filename   #loading filename in a0 fopen as first arg
 la a1,mode   #loading the mode in a1 for fopen as second arg
@@ -71,8 +72,9 @@ ld s1,16(sp)
 ld s2,24(sp)
 ld s3,32(sp)
 ld s4,40(sp)
-addi sp,sp,48
-addi a0,x0,1
+ld s5,48(sp)
+addi sp,sp,56
+addi a0,x0,0
 jalr x0,0(ra)   #restoring the values
 
 

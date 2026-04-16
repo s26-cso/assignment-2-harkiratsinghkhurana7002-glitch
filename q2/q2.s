@@ -88,6 +88,7 @@ jal x0,main_loop
 print:
 addi s1,s3,0  #s1=output array pointer
 addi s2,x0,0  #s2=counter(i)
+addi s0,s0,-1
 
 print_loop:
 bge s2,s0,exit   #if i>=n then exit
@@ -99,6 +100,10 @@ addi s1,s1,4
 jal x0,print_loop
 
 exit:
+lw a1,0(s1)
+la a0,fmt_last
+call printf
+
 la a0,newline
 call printf
 ld ra,0(sp)
@@ -114,3 +119,4 @@ jalr x0,0(ra)
 .data
 fmt: .asciz "%d "
 newline: .asciz "\n"
+fmt_last: .asciz "%d"
